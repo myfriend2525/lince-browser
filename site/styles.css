@@ -145,6 +145,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--amber); outline
 .btn-primary { background: var(--amber-deep); color: #fff; }
 .edition.lite .btn-primary { background: var(--sage-ink); }
 .btn-ghost { border: 1.5px solid currentColor; background: transparent; color: var(--ink); }
+.edition-note { margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+.edition-note a { color: var(--amber-deep); text-decoration: underline; text-underline-offset: 3px; }
 .when-ready { display: none !important; }
 .has-repository .when-ready { display: inline !important; }
 .has-repository .when-pending { display: none !important; }
