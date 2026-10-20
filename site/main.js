@@ -40,7 +40,7 @@ if (repository) {
   // Direct APK downloads: ask GitHub for the latest release and link each edition's APK.
   // Without a release or a matching file, the buttons keep pointing at the Releases page.
   const editions = [
-    { link: 'gecko', fixed: linceLinks.geckoApk, pattern: linceLinks.geckoApkPattern || linceLinks.apkPattern },
+    { link: 'gecko', fixed: linceLinks.geckoApk, pattern: linceLinks.apkPattern },
     { link: 'webview', fixed: linceLinks.webviewApk, pattern: linceLinks.webviewApkPattern },
   ].filter(({ link, fixed, pattern }) => !fixed && pattern && document.querySelector(`[data-link="${link}"]`));
   const repositoryPath = repository.match(/github\.com\/([^/]+\/[^/]+)/)?.[1];

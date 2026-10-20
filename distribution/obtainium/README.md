@@ -5,7 +5,7 @@ separately installable package stays on its selected release channel.
 
 | Channel | APK filter |
 | --- | --- |
-| Standard | `^LinceBrowser-v[0-9]+(?:\.[0-9]+){1,2}-release\.apk$` |
+| Standard (ARM64) | `^LinceBrowser-v[0-9]+(?:\.[0-9]+){1,2}-arm64-v8a-release\.apk$` |
 | User CA | `^LinceBrowser-v[0-9]+(?:\.[0-9]+){1,2}-ca-release\.apk$` |
 
 `com.lince.browser.json` is ready to copy into the Obtainium community-listing repository

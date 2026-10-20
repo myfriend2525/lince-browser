@@ -5,7 +5,7 @@
       "url": "https://github.com/myfriend2525/lince-browser",
       "author": "myfriend2525",
       "name": "Lince Browser",
-      "additionalSettings": "{\"apkFilterRegEx\":\"^LinceBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-release\\\\.apk$\"}",
+      "additionalSettings": "{\"apkFilterRegEx\":\"^LinceBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-arm64-v8a-release\\\\.apk$\"}",
       "altLabel": "Standard (recommended)"
     },
     {
