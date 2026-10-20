@@ -251,7 +251,7 @@ jobs:
           set -euo pipefail
 
           unsigned_apk="input/app-foss-release-unsigned.apk"
-          foss_release_apk="CandyBrowser-${RELEASE_TAG}-foss-release.apk"
+          foss_release_apk="LinceBrowser-${RELEASE_TAG}-foss-release.apk"
           apksigner="$ANDROID_HOME/build-tools/34.0.0/apksigner"
           aapt="$ANDROID_HOME/build-tools/34.0.0/aapt"
           if [[ ! -x "$apksigner" || ! -x "$aapt" ]]; then

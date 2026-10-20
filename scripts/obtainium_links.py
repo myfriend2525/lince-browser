@@ -6,7 +6,7 @@ import json
 from urllib.parse import quote
 
 
-REPOSITORY_URL = "https://github.com/sk2andy/candy-browser"
+REPOSITORY_URL = "https://github.com/myfriend2525/lince-browser"
 APPLICATION_ID = "com.lince.browser"
 VERSION_PATTERN = r"[0-9]+(?:\.[0-9]+){1,2}"
 
@@ -20,11 +20,11 @@ class Variant:
 
 
 VARIANTS = (
-    Variant("Standard · universal", "Candy Browser", "", "release"),
-    Variant("Standard · ARM64", "Candy Browser", "", "arm64-v8a-release"),
-    Variant("FOSS", "Candy FOSS", ".foss", "foss-release"),
-    Variant("System WebView", "Candy System WebView", ".systemwebview", "systemwebview-release"),
-    Variant("User CA", "Candy CA", ".ca", "ca-release"),
+    Variant("Standard · universal", "Lince Browser", "", "release"),
+    Variant("Standard · ARM64", "Lince Browser", "", "arm64-v8a-release"),
+    Variant("FOSS", "Lince FOSS", ".foss", "foss-release"),
+    Variant("System WebView", "Lince System WebView", ".systemwebview", "systemwebview-release"),
+    Variant("User CA", "Lince CA", ".ca", "ca-release"),
 )
 
 
@@ -37,9 +37,9 @@ def setup_link(variant: Variant, nightly: bool) -> str:
     settings = {
         "includePrereleases": nightly,
         "filterReleaseTitlesByRegEx": (
-            r"^Candy Browser Nightly " if nightly else rf"^Candy Browser v{VERSION_PATTERN}$"
+            r"^Lince Browser Nightly " if nightly else rf"^Lince Browser v{VERSION_PATTERN}$"
         ),
-        "apkFilterRegEx": rf"^CandyBrowser-v{version_pattern}-{asset_suffix}\.apk$",
+        "apkFilterRegEx": rf"^LinceBrowser-v{version_pattern}-{asset_suffix}\.apk$",
         "sortMethodChoice": "date",
     }
     if not nightly and variant.package_suffix == ".foss":
@@ -47,7 +47,7 @@ def setup_link(variant: Variant, nightly: bool) -> str:
     app = {
         "id": APPLICATION_ID + variant.package_suffix + (".nightly" if nightly else ""),
         "url": REPOSITORY_URL,
-        "author": "sk2andy",
+        "author": "myfriend2525",
         "name": variant.app_name + (" Nightly" if nightly else ""),
         "preferredApkIndex": 0,
         "additionalSettings": json.dumps(settings, separators=(",", ":")),

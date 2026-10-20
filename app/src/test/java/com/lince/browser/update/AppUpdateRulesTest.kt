@@ -33,9 +33,9 @@ class AppUpdateRulesTest {
                 track = AppUpdateTrack.Nightly,
             )
 
-            assertEquals("CandyBrowser-$tag-${channel.assetSuffix}.apk", update?.fileName)
+            assertEquals("LinceBrowser-$tag-${channel.assetSuffix}.apk", update?.fileName)
             assertEquals(
-                "https://github.com/sk2andy/candy-browser/releases/tag/$tag",
+                "https://github.com/myfriend2525/lince-browser/releases/tag/$tag",
                 update?.releaseNotesUrl,
             )
         }
@@ -154,7 +154,7 @@ class AppUpdateRulesTest {
             supportedAbis = listOf("arm64-v8a"),
         )
 
-        assertEquals("CandyBrowser-v0.9-systemwebview-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-systemwebview-release.apk", update?.fileName)
     }
 
     @Test
@@ -184,9 +184,9 @@ class AppUpdateRulesTest {
         )
 
         assertEquals("0.9", update?.versionName)
-        assertEquals("CandyBrowser-v0.9-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-release.apk", update?.fileName)
         assertEquals(
-            "https://github.com/sk2andy/candy-browser/releases/tag/v0.9",
+            "https://github.com/myfriend2525/lince-browser/releases/tag/v0.9",
             update?.releaseNotesUrl,
         )
     }
@@ -202,7 +202,7 @@ class AppUpdateRulesTest {
             supportedAbis = listOf("arm64-v8a", "armeabi-v7a"),
         )
 
-        assertEquals("CandyBrowser-v0.9-arm64-v8a-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-arm64-v8a-release.apk", update?.fileName)
     }
 
     @Test
@@ -213,7 +213,7 @@ class AppUpdateRulesTest {
             supportedAbis = listOf("arm64-v8a"),
         )
 
-        assertEquals("CandyBrowser-v0.9-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-release.apk", update?.fileName)
     }
 
     @Test
@@ -260,7 +260,7 @@ class AppUpdateRulesTest {
             supportedAbis = listOf("x86_64"),
         )
 
-        assertEquals("CandyBrowser-v0.9-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-release.apk", update?.fileName)
     }
 
     @Test
@@ -280,7 +280,7 @@ class AppUpdateRulesTest {
             channel = AppReleaseChannel.UserCa,
         )
 
-        assertEquals("CandyBrowser-v0.9-ca-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-ca-release.apk", update?.fileName)
     }
 
     @Test
@@ -295,7 +295,7 @@ class AppUpdateRulesTest {
             supportedAbis = listOf("arm64-v8a"),
         )
 
-        assertEquals("CandyBrowser-v0.9-ca-release.apk", update?.fileName)
+        assertEquals("LinceBrowser-v0.9-ca-release.apk", update?.fileName)
     }
 
     @Test
@@ -359,7 +359,7 @@ class AppUpdateRulesTest {
                 "0.8",
                 release(
                     "v0.9",
-                    downloadUrl = "https://example.com/CandyBrowser-v0.9-release.apk",
+                    downloadUrl = "https://example.com/LinceBrowser-v0.9-release.apk",
                 ),
             ),
         )
@@ -381,8 +381,8 @@ class AppUpdateRulesTest {
         prerelease: Boolean = false,
         contentType: String = AvailableAppUpdate.APK_MIME_TYPE,
         downloadUrl: String =
-            "https://github.com/sk2andy/candy-browser/releases/download/$tag/" +
-                "CandyBrowser-$tag-release.apk",
+            "https://github.com/myfriend2525/lince-browser/releases/download/$tag/" +
+                "LinceBrowser-$tag-release.apk",
         assets: List<GitHubReleaseAsset>? = null,
     ) = GitHubReleaseMetadata(
         tagName = tag,
@@ -390,7 +390,7 @@ class AppUpdateRulesTest {
         prerelease = prerelease,
         assets = assets ?: listOf(
             GitHubReleaseAsset(
-                name = "CandyBrowser-$tag-release.apk",
+                name = "LinceBrowser-$tag-release.apk",
                 contentType = contentType,
                 downloadUrl = downloadUrl,
             ),
@@ -401,9 +401,9 @@ class AppUpdateRulesTest {
         tag: String,
         suffix: String,
     ) = GitHubReleaseAsset(
-        name = "CandyBrowser-$tag-$suffix.apk",
+        name = "LinceBrowser-$tag-$suffix.apk",
         contentType = AvailableAppUpdate.APK_MIME_TYPE,
-        downloadUrl = "https://github.com/sk2andy/candy-browser/releases/download/$tag/" +
-            "CandyBrowser-$tag-$suffix.apk",
+        downloadUrl = "https://github.com/myfriend2525/lince-browser/releases/download/$tag/" +
+            "LinceBrowser-$tag-$suffix.apk",
     )
 }

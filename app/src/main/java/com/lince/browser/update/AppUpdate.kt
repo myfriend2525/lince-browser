@@ -11,11 +11,16 @@ data class AvailableAppUpdate(
     val fileName: String,
 ) {
     val releaseNotesUrl: String
-        get() = "https://github.com/sk2andy/candy-browser/releases/tag/v$versionName"
+        get() = "https://github.com/${AppReleaseRepository.SLUG}/releases/tag/v$versionName"
 
     companion object {
         const val APK_MIME_TYPE = "application/vnd.android.package-archive"
     }
+}
+
+internal object AppReleaseRepository {
+    const val SLUG = "myfriend2525/lince-browser"
+    const val ASSET_PREFIX = "LinceBrowser-"
 }
 
 internal data class GitHubReleaseMetadata(
@@ -104,9 +109,9 @@ internal object AppUpdateRules {
         val normalizedTag = release.tagName.removePrefix("v")
         val expectedFileNames = buildList {
             if (channel == AppReleaseChannel.Standard && "arm64-v8a" in supportedAbis) {
-                add("CandyBrowser-v$normalizedTag-arm64-v8a-release.apk")
+                add("${AppReleaseRepository.ASSET_PREFIX}v$normalizedTag-arm64-v8a-release.apk")
             }
-            add("CandyBrowser-v$normalizedTag-${channel.assetSuffix}.apk")
+            add("${AppReleaseRepository.ASSET_PREFIX}v$normalizedTag-${channel.assetSuffix}.apk")
         }
         val asset = selectExpectedAsset(
             assets = release.assets,
@@ -152,7 +157,7 @@ internal object AppUpdateRules {
             uri.rawPath == "${RELEASE_DOWNLOAD_PATH}v$versionName/$fileName"
     }.getOrDefault(false)
 
-    private const val RELEASE_DOWNLOAD_PATH = "/sk2andy/candy-browser/releases/download/"
+    private const val RELEASE_DOWNLOAD_PATH = "/${AppReleaseRepository.SLUG}/releases/download/"
 
     private val nightlyVersionPattern = Regex("^v?\\d+\\.\\d+(?:\\.\\d+)?-nightly\\.(\\d{12})$")
     private val nightlyTimestampFormat = DateTimeFormatter.ofPattern("uuuuMMddHHmm")

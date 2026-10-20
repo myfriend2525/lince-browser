@@ -74,7 +74,7 @@ next release, prepare the shared Markdown file before tagging and publish it unc
 | Signing | Existing release signing key and pinned certificate; optimized release-derived build types |
 | GitHub publication | Prerelease, explicitly excluded from the latest stable release; publish after signed APK checks succeed |
 | Variants | Standard universal, standard ARM64, FOSS, System WebView, and User CA |
-| Asset names | `CandyBrowser-v<base-version>-nightly.<UTC YYYYMMDDHHmm>-<variant-suffix>.apk` plus SHA-256 checksums; suffixes match stable APKs |
+| Asset names | `LinceBrowser-v<base-version>-nightly.<UTC YYYYMMDDHHmm>-<variant-suffix>.apk` plus SHA-256 checksums; suffixes match stable APKs |
 | Package IDs | Stable variant ID plus `.nightly`; separate app data and launcher names |
 | Update ordering | Nightly timestamp determines recency, independently of the base version |
 | FOSS updates | In-app GitHub updater remains disabled; Obtainium can track stable or Nightly FOSS APKs |

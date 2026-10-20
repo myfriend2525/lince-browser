@@ -22,7 +22,7 @@ EXPECTED_APPLICATION_ID = os.environ.get(
 )
 EXPECTED_APP_LABEL = os.environ.get(
     "CANDY_SYSTEM_WEBVIEW_APP_LABEL",
-    "Candy System WebView",
+    "Lince System WebView",
 )
 EXPECTED_VERSION_CODE = os.environ.get("CANDY_SYSTEM_WEBVIEW_VERSION_CODE")
 EXPECTED_VERSION_NAME = os.environ.get("CANDY_SYSTEM_WEBVIEW_VERSION_NAME")

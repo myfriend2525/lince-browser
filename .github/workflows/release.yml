@@ -266,9 +266,9 @@ jobs:
             CANDY_STANDARD_APPLICATION_ID="com.lince.browser" \
             CANDY_FOSS_APPLICATION_ID="com.lince.browser.foss" \
             CANDY_USER_CA_APPLICATION_ID="com.lince.browser.ca" \
-            CANDY_STANDARD_APP_LABEL="Candy Browser" \
-            CANDY_FOSS_APP_LABEL="Candy FOSS" \
-            CANDY_USER_CA_APP_LABEL="Candy CA" \
+            CANDY_STANDARD_APP_LABEL="Lince Browser" \
+            CANDY_FOSS_APP_LABEL="Lince FOSS" \
+            CANDY_USER_CA_APP_LABEL="Lince CA" \
             CANDY_STANDARD_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground" \
             CANDY_FOSS_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground_foss" \
             CANDY_USER_CA_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground_ca" \
@@ -298,11 +298,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          release_apk="CandyBrowser-${RELEASE_TAG}-release.apk"
-          arm64_release_apk="CandyBrowser-${RELEASE_TAG}-arm64-v8a-release.apk"
-          foss_release_apk="CandyBrowser-${RELEASE_TAG}-foss-github-release.apk"
-          systemwebview_release_apk="CandyBrowser-${RELEASE_TAG}-systemwebview-release.apk"
-          user_ca_release_apk="CandyBrowser-${RELEASE_TAG}-ca-release.apk"
+          release_apk="LinceBrowser-${RELEASE_TAG}-release.apk"
+          arm64_release_apk="LinceBrowser-${RELEASE_TAG}-arm64-v8a-release.apk"
+          foss_release_apk="LinceBrowser-${RELEASE_TAG}-foss-github-release.apk"
+          systemwebview_release_apk="LinceBrowser-${RELEASE_TAG}-systemwebview-release.apk"
+          user_ca_release_apk="LinceBrowser-${RELEASE_TAG}-ca-release.apk"
           cp "$RUNNER_TEMP/candy-standard-universal-release.apk" "$release_apk"
           cp "$RUNNER_TEMP/candy-standard-arm64-v8a-release.apk" "$arm64_release_apk"
           cp "app/build/outputs/apk/foss/release/app-foss-release.apk" "$foss_release_apk"
@@ -394,7 +394,7 @@ jobs:
 
           release_flags=(
             --target "$GITHUB_SHA"
-            --title "Candy Browser ${RELEASE_TAG}"
+            --title "Lince Browser ${RELEASE_TAG}"
             --notes-file "$INPUT_CHANGELOG"
           )
           if [[ "$INPUT_PRERELEASE" == 'true' ]]; then

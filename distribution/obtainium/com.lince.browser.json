@@ -2,22 +2,22 @@
   "configs": [
     {
       "id": "com.lince.browser",
-      "url": "https://github.com/sk2andy/candy-browser",
-      "author": "sk2andy",
-      "name": "Candy Browser",
-      "additionalSettings": "{\"apkFilterRegEx\":\"^CandyBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-release\\\\.apk$\"}",
+      "url": "https://github.com/myfriend2525/lince-browser",
+      "author": "myfriend2525",
+      "name": "Lince Browser",
+      "additionalSettings": "{\"apkFilterRegEx\":\"^LinceBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-release\\\\.apk$\"}",
       "altLabel": "Standard (recommended)"
     },
     {
       "id": "com.lince.browser.ca",
-      "url": "https://github.com/sk2andy/candy-browser",
-      "author": "sk2andy",
-      "name": "Candy CA",
-      "additionalSettings": "{\"apkFilterRegEx\":\"^CandyBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-ca-release\\\\.apk$\"}",
+      "url": "https://github.com/myfriend2525/lince-browser",
+      "author": "myfriend2525",
+      "name": "Lince CA",
+      "additionalSettings": "{\"apkFilterRegEx\":\"^LinceBrowser-v[0-9]+(?:\\\\.[0-9]+){1,2}-ca-release\\\\.apk$\"}",
       "altLabel": "User CA (advanced)"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/sk2andy/candy-browser/main/app/src/main/res/drawable-nodpi/ic_launcher_foreground_art.png",
+  "icon": "https://raw.githubusercontent.com/myfriend2525/lince-browser/main/app/src/main/res/drawable-nodpi/ic_launcher_foreground_art.png",
   "categories": ["browser"],
   "description": {
     "en": "A privacy-focused Android browser with local content blocking and private browsing.",

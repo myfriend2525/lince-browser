@@ -131,9 +131,9 @@ internal class GitHubAppUpdateChecker {
 
     private companion object {
         const val LATEST_RELEASE_URL =
-            "https://api.github.com/repos/sk2andy/candy-browser/releases/latest"
+            "https://api.github.com/repos/${AppReleaseRepository.SLUG}/releases/latest"
         const val RELEASES_URL =
-            "https://api.github.com/repos/sk2andy/candy-browser/releases?per_page=20"
+            "https://api.github.com/repos/${AppReleaseRepository.SLUG}/releases?per_page=20"
         const val RELEASES_PER_PAGE = 20
         const val MAX_RELEASE_PAGES = 3
         const val GITHUB_API_VERSION = "2026-03-10"

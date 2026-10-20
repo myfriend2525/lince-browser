@@ -672,9 +672,9 @@ the bounded candidates cached by load, mutation or interaction discovery.
 
 | Build | Application ID | Trust anchors | Release asset |
 | --- | --- | --- | --- |
-| Standard | `com.lince.browser` | Gecko built-in roots for page/engine requests; Android system roots for Android networking | `CandyBrowser-v<version>-release.apk` |
-| System WebView | `com.lince.browser.systemwebview` | Android system roots for page and app networking | `CandyBrowser-v<version>-systemwebview-release.apk` |
-| User CA | `com.lince.browser.ca` | Standard roots plus user-installed Android CA roots | `CandyBrowser-v<version>-ca-release.apk` |
+| Standard | `com.lince.browser` | Gecko built-in roots for page/engine requests; Android system roots for Android networking | `LinceBrowser-v<version>-release.apk` |
+| System WebView | `com.lince.browser.systemwebview` | Android system roots for page and app networking | `LinceBrowser-v<version>-systemwebview-release.apk` |
+| User CA | `com.lince.browser.ca` | Standard roots plus user-installed Android CA roots | `LinceBrowser-v<version>-ca-release.apk` |
 
 - The build channel controls trust for both networking stacks: Android Network Security Config
   controls Android requests; `GeckoRuntimeSettingsFactory` passes `BuildConfig.TRUST_USER_CERTIFICATES`

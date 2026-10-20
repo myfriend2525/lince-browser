@@ -152,9 +152,9 @@ jobs:
             CANDY_STANDARD_APPLICATION_ID="com.lince.browser.nightly" \
             CANDY_FOSS_APPLICATION_ID="com.lince.browser.foss.nightly" \
             CANDY_USER_CA_APPLICATION_ID="com.lince.browser.ca.nightly" \
-            CANDY_STANDARD_APP_LABEL="Candy Browser Nightly" \
-            CANDY_FOSS_APP_LABEL="Candy FOSS Nightly" \
-            CANDY_USER_CA_APP_LABEL="Candy CA Nightly" \
+            CANDY_STANDARD_APP_LABEL="Lince Browser" \
+            CANDY_FOSS_APP_LABEL="Lince FOSS" \
+            CANDY_USER_CA_APP_LABEL="Lince CA Nightly" \
             CANDY_STANDARD_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground" \
             CANDY_FOSS_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground_foss" \
             CANDY_USER_CA_LAUNCHER_FOREGROUND="drawable/ic_launcher_foreground_ca" \
@@ -181,7 +181,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir nightly-artifacts
-          prefix="nightly-artifacts/CandyBrowser-${RELEASE_TAG}"
+          prefix="nightly-artifacts/LinceBrowser-${RELEASE_TAG}"
           cp "$RUNNER_TEMP/candy-standard-universal-nightly.apk" "${prefix}-release.apk"
           cp "$RUNNER_TEMP/candy-standard-arm64-v8a-nightly.apk" "${prefix}-arm64-v8a-release.apk"
           cp "app/build/outputs/apk/foss/nightly/app-foss-nightly.apk" "${prefix}-foss-release.apk"
@@ -228,7 +228,7 @@ jobs:
           done
           CANDY_SYSTEM_WEBVIEW_APK="${prefix}-systemwebview-release.apk" \
             CANDY_SYSTEM_WEBVIEW_APPLICATION_ID="com.lince.browser.systemwebview.nightly" \
-            CANDY_SYSTEM_WEBVIEW_APP_LABEL="Candy System WebView Nightly" \
+            CANDY_SYSTEM_WEBVIEW_APP_LABEL="Lince System WebView" \
             CANDY_SYSTEM_WEBVIEW_VERSION_CODE="$RELEASE_VERSION_CODE" \
             CANDY_SYSTEM_WEBVIEW_VERSION_NAME="$RELEASE_VERSION" \
             python3 scripts/test_systemwebview_apk.py
@@ -264,7 +264,7 @@ jobs:
           # With assets, gh creates a draft and publishes only after every upload succeeds.
           gh release create "$RELEASE_TAG" nightly-artifacts/* \
             --target "$RELEASE_SHA" \
-            --title "Candy Browser Nightly ${RELEASE_VERSION}" \
+            --title "Lince Browser Nightly ${RELEASE_VERSION}" \
             --notes-file "$RELEASE_NOTES" --prerelease --latest=false
 
       - name: Remove release keystore

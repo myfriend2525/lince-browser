@@ -30,9 +30,9 @@ class AppUpdateDialogInstrumentedTest {
                 AppUpdateDialog(
                     update = AvailableAppUpdate(
                         versionName = "0.99",
-                        downloadUrl = "https://github.com/sk2andy/candy-browser/releases/" +
-                            "download/v0.99/CandyBrowser-v0.99-release.apk",
-                        fileName = "CandyBrowser-v0.99-release.apk",
+                        downloadUrl = "https://github.com/myfriend2525/lince-browser/releases/" +
+                            "download/v0.99/LinceBrowser-v0.99-release.apk",
+                        fileName = "LinceBrowser-v0.99-release.apk",
                     ),
                     onDismiss = { dismissals.incrementAndGet() },
                     onDownload = { downloads.incrementAndGet() },

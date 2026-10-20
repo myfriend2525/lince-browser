@@ -305,9 +305,7 @@ android {
 
         release {
             isMinifyEnabled = true
-            // Disabled until Lince Browser publishes its own GitHub releases; the updater still targets
-            // the upstream Candy repository.
-            buildConfigField("boolean", "ENABLE_GITHUB_UPDATES", "false")
+            buildConfigField("boolean", "ENABLE_GITHUB_UPDATES", "true")
             if (hasReleaseSigning) {
                 signingConfig = signingConfigs.getByName("release")
             }

@@ -1,12 +1,12 @@
 # Obtainium listing
 
-GitHub Releases already expose stable, signed APK assets. Candy needs explicit filters so each
+GitHub Releases already expose stable, signed APK assets. Lince needs explicit filters so each
 separately installable package stays on its selected release channel.
 
 | Channel | APK filter |
 | --- | --- |
-| Standard | `^CandyBrowser-v[0-9]+(?:\.[0-9]+){1,2}-release\.apk$` |
-| User CA | `^CandyBrowser-v[0-9]+(?:\.[0-9]+){1,2}-ca-release\.apk$` |
+| Standard | `^LinceBrowser-v[0-9]+(?:\.[0-9]+){1,2}-release\.apk$` |
+| User CA | `^LinceBrowser-v[0-9]+(?:\.[0-9]+){1,2}-ca-release\.apk$` |
 
 `com.lince.browser.json` is ready to copy into the Obtainium community-listing repository
 at `public/data/apps/complex/com.lince.browser.json`. Open a pull request against

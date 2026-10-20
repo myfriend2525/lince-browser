@@ -257,7 +257,7 @@ jobs:
           fi
 
           mkdir -p distribution/whatsnew
-          cp "$bundle" "distribution/CandyBrowser-v${RELEASE_VERSION}-play.aab"
+          cp "$bundle" "distribution/LinceBrowser-v${RELEASE_VERSION}-play.aab"
           cp "$mapping" distribution/mapping.txt
           cp \
             "fastlane/metadata/android/en-US/changelogs/${RELEASE_VERSION_CODE}.txt" \
@@ -268,7 +268,7 @@ jobs:
           (
             cd distribution
             sha256sum \
-              "CandyBrowser-v${RELEASE_VERSION}-play.aab" \
+              "LinceBrowser-v${RELEASE_VERSION}-play.aab" \
               mapping.txt \
               whatsnew/whatsnew-en-US \
               whatsnew/whatsnew-de-DE \
@@ -336,7 +336,7 @@ jobs:
           done
 
           keystore_path="$RUNNER_TEMP/candy-play-upload.jks"
-          bundle="distribution/CandyBrowser-v${{ needs.build.outputs.release_version }}-play.aab"
+          bundle="distribution/LinceBrowser-v${{ needs.build.outputs.release_version }}-play.aab"
           printf '%s' "$CANDY_PLAY_UPLOAD_KEYSTORE_BASE64" | base64 --decode > "$keystore_path"
           chmod 600 "$keystore_path"
 
@@ -400,7 +400,7 @@ jobs:
         with:
           serviceAccountJson: ${{ steps.google_auth.outputs.credentials_file_path }}
           packageName: com.lince.browser
-          releaseFiles: distribution/CandyBrowser-v${{ needs.build.outputs.release_version }}-play.aab
+          releaseFiles: distribution/LinceBrowser-v${{ needs.build.outputs.release_version }}-play.aab
           tracks: ${{ needs.build.outputs.release_track }}
           status: ${{ needs.build.outputs.release_status }}
           releaseName: v${{ needs.build.outputs.release_version }}

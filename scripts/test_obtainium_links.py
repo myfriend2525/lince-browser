@@ -22,11 +22,11 @@ class ObtainiumLinksTest(unittest.TestCase):
 
     def test_real_readme_links_keep_package_release_and_asset_channels_aligned(self):
         variants = (
-            ("release", "", "Candy Browser"),
-            ("arm64-v8a-release", "", "Candy Browser"),
-            ("foss-release", ".foss", "Candy FOSS"),
-            ("systemwebview-release", ".systemwebview", "Candy System WebView"),
-            ("ca-release", ".ca", "Candy CA"),
+            ("release", "", "Lince Browser"),
+            ("arm64-v8a-release", "", "Lince Browser"),
+            ("foss-release", ".foss", "Lince FOSS"),
+            ("systemwebview-release", ".systemwebview", "Lince System WebView"),
+            ("ca-release", ".ca", "Lince CA"),
         )
         self.assertEqual(10, len(self.links))
         for index, (channel, url) in enumerate(self.links):
@@ -42,7 +42,7 @@ class ObtainiumLinksTest(unittest.TestCase):
                     app["id"],
                 )
                 self.assertEqual(name + (" Nightly" if nightly else ""), app["name"])
-                self.assertEqual("https://github.com/sk2andy/candy-browser", app["url"])
+                self.assertEqual("https://github.com/myfriend2525/lince-browser", app["url"])
                 self.assertEqual(0, app["preferredApkIndex"])
                 self.assertIs(nightly, settings["includePrereleases"])
                 self.assertEqual("date", settings["sortMethodChoice"])
@@ -59,31 +59,31 @@ class ObtainiumLinksTest(unittest.TestCase):
                             "-nightly.202610120000" if candidate_nightly else ""
                         )
                         title = (
-                            f"Candy Browser Nightly v{candidate_version}" if candidate_nightly
-                            else f"Candy Browser v{version}"
+                            f"Lince Browser Nightly v{candidate_version}" if candidate_nightly
+                            else f"Lince Browser v{version}"
                         )
                         self.assertEqual(candidate_nightly == nightly, bool(title_filter.search(title)))
                         for candidate_suffix, _, _ in variants:
-                            asset = f"CandyBrowser-v{candidate_version}-{candidate_suffix}.apk"
+                            asset = f"LinceBrowser-v{candidate_version}-{candidate_suffix}.apk"
                             matches = candidate_nightly == nightly and candidate_suffix == suffix
                             self.assertEqual(matches, bool(asset_filter.search(asset)), asset)
                             self.assertIsNone(asset_filter.search(asset + ".sha256"))
                             self.assertIsNone(asset_filter.search("prefix-" + asset))
-                        foss_github_asset = f"CandyBrowser-v{candidate_version}-foss-github-release.apk"
+                        foss_github_asset = f"LinceBrowser-v{candidate_version}-foss-github-release.apk"
                         self.assertEqual(
                             not nightly and not candidate_nightly and suffix == "foss-release",
                             bool(asset_filter.search(foss_github_asset)),
                             foss_github_asset,
                         )
 
-                self.assertIsNone(title_filter.search("Candy Browser v0.45-rc.1"))
+                self.assertIsNone(title_filter.search("Lince Browser v0.45-rc.1"))
                 for malformed in (
                     "0.45-nightly.20261012",
                     "0.45-nightly.20261012000000",
                     "0.45-nightly.202610120000-debug",
                     "0.45-rc.1",
                 ):
-                    self.assertIsNone(asset_filter.search(f"CandyBrowser-v{malformed}-{suffix}.apk"))
+                    self.assertIsNone(asset_filter.search(f"LinceBrowser-v{malformed}-{suffix}.apk"))
 
 
 if __name__ == "__main__":
