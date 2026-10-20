@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f8fd0">
+  <title>Privacy Policy — Lince Browser</title>
+  <meta name="description" content="Privacy Policy for Lince Browser for Android and this website.">
+  <link rel="alternate" hreflang="es" href="../../privacy/">
+  <link rel="alternate" hreflang="en" href="./">
+  <link rel="icon" type="image/png" href="../../assets/lince-icon.png">
+  <link rel="preload" href="../../assets/fonts/Grandstander-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav is-floating" data-floating-nav="always">
+    <a class="u logo" href="../" aria-label="Lince Browser home"><img src="../../assets/lince-icon.png" width="36" height="36" alt="">Lince Browser</a>
+    <nav class="u nav-pill" aria-label="Primary navigation">
+      <a href="../#features">Features</a>
+      <a href="../#download">Editions</a>
+      <a href="../#install">Install</a>
+      <a href="./" aria-current="page">Privacy</a>
+    </nav>
+    <a class="u pill lang" href="../../privacy/" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
+    <a class="u pill pill-white nav-join" href="../#download">Download</a>
+  </header>
+
+  <div class="legal-hero">
+    <p class="eyebrow">Lince Browser</p>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 20 October 2026</p>
+  </div>
+
+  <main id="main" class="wrap legal-shell">
+    <nav class="legal-toc" aria-label="Privacy policy sections">
+      <a href="#summary">Summary</a>
+      <a href="#browser-data">Browser data</a>
+      <a href="#sync">Lince Sync</a>
+      <a href="#services">External services</a>
+      <a href="#control">Your control</a>
+      <a href="#security">Security</a>
+      <a href="#website">This website</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <article class="legal-content">
+      <section id="summary">
+        <p class="legal-lede">Lince Browser is designed to keep your browsing data on your device. Lince runs no analytics service and no hosted sync service, and the Lince team does not receive your browsing history through the app.</p>
+        <div class="legal-note">
+          <strong>Short version</strong>
+          <p>Local features stay local. Network features connect only when you use or enable them. Lince Sync sends end-to-end encrypted tab data to a server you choose.</p>
+        </div>
+      </section>
+
+      <section id="scope">
+        <h2>1. Scope</h2>
+        <p>This policy covers Lince Browser for Android in both its GeckoView and System WebView editions, and this website. Websites you visit, search providers, sync server operators and other services have their own privacy practices.</p>
+      </section>
+
+      <section id="browser-data">
+        <h2>2. Data processed by Lince</h2>
+        <p>Depending on the features you use, Lince may process tabs, URLs, page titles, browsing history, favorites, profiles, site permissions, downloads, Reader content, saved page previews and local privacy-protection statistics.</p>
+        <p>This information is stored on your device for the features you choose, and Lince does not send it to the Lince team. Private tabs, private trails, private permissions and private Reader state are never written to persistent storage.</p>
+        <p>Your operating system, the browser engine, websites you visit and extensions you install may process additional data independently of Lince.</p>
+      </section>
+
+      <section id="sync">
+        <h2>3. Lince Sync</h2>
+        <p>Lince Sync is optional and self-hosted. You provide the server endpoint and credentials and decide which data types to synchronize.</p>
+        <h3>During setup</h3>
+        <ul>
+          <li><strong>Server endpoint and username:</strong> stored on your device as configuration.</li>
+          <li><strong>Server password:</strong> sent to your server during enrollment.</li>
+          <li><strong>E2EE passphrase:</strong> used on the device to create or unlock encryption keys. It is never sent to the server.</li>
+          <li><strong>Device name and icon:</strong> encrypted on the device before upload.</li>
+        </ul>
+        <h3>What is synchronized</h3>
+        <p>When tab sync is enabled, Lince processes eligible HTTP and HTTPS tab URLs, titles, order and pin state. Private tabs, browser-internal pages and local files are excluded. Everything is encrypted on the device before transmission.</p>
+        <h3>What the server can observe</h3>
+        <p>The server stores encrypted payloads plus the metadata needed to operate sync, such as workspace and device identifiers, revisions, payload sizes and timestamps. It does not receive tab URLs, tab titles, device names, profile icons, your passphrase or your keys in plaintext.</p>
+        <p>The server operator or hosting provider may separately process network metadata, including IP addresses and request logs. Those practices are controlled by whoever operates the server you choose.</p>
+      </section>
+
+      <section id="services">
+        <h2>4. Websites and external services</h2>
+        <p>Browsing sends requests to the websites you choose. Optional features such as search suggestions, search providers, translation, sharing, external apps or extensions contact their services only when you configure, enable or use them. Lince never requests remote search suggestions for anything you type in private mode.</p>
+        <p>In the GeckoView edition, if you enable encrypted DNS, DNS queries are sent to the provider you configure. Firefox extensions you install run with the permissions you grant them and follow their authors’ policies. uBlock Origin, built into this edition, filters on your device.</p>
+        <p>If you use Google Cast, Google’s Cast Sender SDK is activated and may send diagnostic and usage information to Google to operate Cast. Media URLs and metadata are sent only to the Cast device you select, and Lince does not store them. Google’s processing is governed by the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+        <p>Lince does not sell personal information and does not use your browsing data for advertising or profiling unrelated to browser features.</p>
+      </section>
+
+      <section id="control">
+        <h2>5. Retention and your control</h2>
+        <p>Local data remains until you clear it, remove the profile, reset the feature or uninstall the app, subject to platform backup behavior. Lince Sync ciphertext remains on your server until it is removed according to that server’s operation and backups.</p>
+        <p>You can disable sync, revoke permissions, clear browsing data or delete data from your server. Losing your Lince Sync passphrase makes encrypted data unrecoverable.</p>
+      </section>
+
+      <section id="security">
+        <h2>6. Security</h2>
+        <p>Lince Sync uses Argon2id for passphrase-based key derivation, AES-256-GCM for authenticated encryption, HKDF-SHA-256 for key separation and independently generated P-256 device identities.</p>
+        <p>No system can guarantee absolute security. An unlocked device, malware, a compromised extension or an untrusted transport to the server may expose information outside Lince’s protection.</p>
+      </section>
+
+      <section id="children">
+        <h2>7. Children</h2>
+        <p>Lince Browser is a general-purpose browser and is not directed to children. The project does not knowingly collect personal information from children.</p>
+      </section>
+
+      <section id="website">
+        <h2>8. This website</h2>
+        <p>This website is static: it uses no cookies, analytics or forms. The hosting service may log technical access data such as IP addresses. The homepage illustration and video are loaded from an external server, which also receives that technical data when it serves them.</p>
+      </section>
+
+      <section id="changes">
+        <h2>9. Changes</h2>
+        <p>Material changes will be published on this page with their update date. The project repository history provides a public record of every revision.</p>
+      </section>
+
+      <section id="contact">
+        <h2>10. Contact</h2>
+        <p>For privacy questions or support, open an issue on the <a href="../#download" data-link="issues">Lince Browser issue tracker on GitHub</a>. For a security-sensitive report, do not post sensitive details publicly; open a short issue asking for a private channel.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="../../assets/lince-icon.png" width="34" height="34" alt="">Lince Browser</div>
+        <nav aria-label="Footer">
+          <a href="../">Home</a>
+          <a href="../legal/">Legal notice</a>
+          <a href="https://www.mozilla.org/MPL/2.0/">MPL 2.0 License</a>
+          <a href="../#download" data-link="source" data-requires-repository>Source code</a>
+        </nav>
+      </div>
+      <p class="credit">Based on <a href="https://github.com/sk2andy/candy-browser">Candy Browser</a> by André Naumann (MPL 2.0). © Lince Browser Team.</p>
+    </div>
+  </footer>
+
+  <script src="../../config.js"></script>
+  <script src="../../main.js"></script>
+</body>
+</html>

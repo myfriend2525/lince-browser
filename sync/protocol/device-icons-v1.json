@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "icons": [
+    { "id": "lynx-01", "emoji": "😄", "label": "Happy lynx" },
+    { "id": "lynx-02", "emoji": "😎", "label": "Cool lynx" },
+    { "id": "lynx-03", "emoji": "🥺", "label": "Sweet lynx" },
+    { "id": "lynx-04", "emoji": "😉", "label": "Winking lynx" },
+    { "id": "lynx-05", "emoji": "😠", "label": "Fierce lynx" },
+    { "id": "lynx-06", "emoji": "😴", "label": "Sleepy lynx" },
+    { "id": "lynx-07", "emoji": "🧢", "label": "Cap lynx" },
+    { "id": "lynx-08", "emoji": "🐈‍⬛", "label": "Shadow lynx" },
+    { "id": "lynx-09", "emoji": "🔥", "label": "Fire lynx" },
+    { "id": "lynx-10", "emoji": "🥰", "label": "Loving lynx" },
+    { "id": "lynx-11", "emoji": "🎧", "label": "Music lynx" },
+    { "id": "lynx-12", "emoji": "💭", "label": "Dreamy lynx" },
+    { "id": "lynx-13", "emoji": "🤓", "label": "Studious lynx" },
+    { "id": "lynx-14", "emoji": "😆", "label": "Laughing lynx" },
+    { "id": "lynx-15", "emoji": "🦹", "label": "Hooded lynx" },
+    { "id": "lynx-16", "emoji": "🕶️", "label": "Pixel lynx" },
+    { "id": "lynx-17", "emoji": "🥷", "label": "Ninja lynx" },
+    { "id": "lynx-18", "emoji": "👑", "label": "King lynx" },
+    { "id": "lynx-19", "emoji": "🌸", "label": "Blossom lynx" },
+    { "id": "lynx-20", "emoji": "☀️", "label": "Sunny lynx" },
+    { "id": "lynx-21", "emoji": "🧑‍🚀", "label": "Astronaut lynx" },
+    { "id": "lynx-22", "emoji": "🌌", "label": "Night lynx" },
+    { "id": "lynx-23", "emoji": "🌿", "label": "Nature lynx" },
+    { "id": "lynx-24", "emoji": "❄️", "label": "Winter lynx" },
+    { "id": "computer", "emoji": "💻", "label": "Computer" },
+    { "id": "phone", "emoji": "📱", "label": "Phone" }
+  ]
+}

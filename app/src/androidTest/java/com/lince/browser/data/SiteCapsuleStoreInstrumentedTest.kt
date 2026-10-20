@@ -1,0 +1,77 @@
+package com.lince.browser.data
+
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import com.lince.browser.capsule.CapsuleChromeMode
+import com.lince.browser.capsule.CapsuleIconColor
+import com.lince.browser.capsule.CapsuleIconMode
+import com.lince.browser.capsule.CapsuleNavigationMode
+import com.lince.browser.capsule.SiteCapsule
+import com.lince.browser.capsule.SiteCapsuleRules
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import java.io.File
+
+@RunWith(AndroidJUnit4::class)
+class SiteCapsuleStoreInstrumentedTest {
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
+    private val store = SiteCapsuleStore(context)
+    private val storeFile = File(context.filesDir, "site_capsules_v1.json")
+
+    @Before
+    fun setUp() {
+        storeFile.delete()
+        File(storeFile.path + ".bak").delete()
+    }
+
+    @After
+    fun tearDown() = setUp()
+
+    @Test
+    fun versionedCapsuleRoundTripsAcrossStoreInstances() {
+        val capsule = SiteCapsule(
+            id = "04a74ad8-7533-460c-bfbf-a135968940d5",
+            name = "Mail",
+            startUrl = "https://mail.example/inbox",
+            profileId = "work",
+            ownsDedicatedProfile = true,
+            isolatedStorageRequested = true,
+            navigationMode = CapsuleNavigationMode.SameRegistrableDomain,
+            chromeMode = CapsuleChromeMode.NoControls,
+            iconMode = CapsuleIconMode.Custom,
+            iconEmoji = "📬",
+            iconColor = CapsuleIconColor.Sky,
+            createdAtMillis = 10L,
+            updatedAtMillis = 20L,
+        )
+
+        store.save(listOf(capsule))
+
+        assertEquals(listOf(capsule), SiteCapsuleStore(context).load())
+    }
+
+    @Test
+    fun versionOneCapsuleGetsSafeIconCustomizationDefaults() {
+        storeFile.writeText(
+            """{"version":1,"capsules":[{"id":"04a74ad8-7533-460c-bfbf-a135968940d5","name":"Mail","startUrl":"https://mail.example","profileId":"work","createdAtMillis":10,"updatedAtMillis":20}]}""",
+        )
+
+        val capsule = store.load().single()
+
+        assertEquals(SiteCapsuleRules.DEFAULT_ICON_EMOJI, capsule.iconEmoji)
+        assertEquals(CapsuleIconColor.Light, capsule.iconColor)
+    }
+
+    @Test
+    fun corruptAndOversizedDataFailsClosed() {
+        storeFile.writeText("not-json")
+        assertTrue(store.load().isEmpty())
+
+        storeFile.writeBytes(ByteArray(512 * 1024 + 1) { 'x'.code.toByte() })
+        assertTrue(store.load().isEmpty())
+    }
+}

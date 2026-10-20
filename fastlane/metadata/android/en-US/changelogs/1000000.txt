@@ -1,0 +1,1 @@
+Lince Browser 1.0: new lynx identity with 24 profile avatars, a liquid-metal loading border and a sunset tab backdrop. Smoother download notifications, private System WebView downloads that never reach Android's download manager, and fixed headers that no longer drift on animated sites. Based on Candy Browser (MPL-2.0).
