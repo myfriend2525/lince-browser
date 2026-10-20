@@ -17,9 +17,13 @@ notice in Spanish (root) and English (`en/`).
 
 While `repository` in `config.js` is empty, download buttons show "Próximamente / Coming soon" and
 GitHub links (source, support) are hidden. Set it to the repository URL, for example
-`https://github.com/your-user/lince-browser`, and the buttons point to the latest GitHub release.
-`geckoApk` and `webviewApk` can hold direct APK links; `apkPattern` must match the GeckoView APK
-name published by the release workflow so Obtainium picks the right file.
+`https://github.com/your-user/lince-browser`.
+
+With a repository set, `main.js` asks the GitHub API for the latest release and points each edition's
+button straight at the APK whose name matches `apkPattern` (GeckoView, also used by Obtainium) or
+`webviewApkPattern` (System WebView), so tapping the button downloads the file. Without a release or
+a matching asset, the buttons fall back to the Releases page. `geckoApk` and `webviewApk` override
+the lookup with fixed links. The patterns must match the APK names the release workflow publishes.
 
 ## Local preview
 

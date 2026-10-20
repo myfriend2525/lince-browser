@@ -36,6 +36,31 @@ if (repository) {
     if (destinations[link.dataset.link]) link.href = destinations[link.dataset.link];
   });
   document.documentElement.classList.add('has-repository');
+
+  // Direct APK downloads: ask GitHub for the latest release and link each edition's APK.
+  // Without a release or a matching file, the buttons keep pointing at the Releases page.
+  const editions = [
+    { link: 'gecko', fixed: linceLinks.geckoApk, pattern: linceLinks.apkPattern },
+    { link: 'webview', fixed: linceLinks.webviewApk, pattern: linceLinks.webviewApkPattern },
+  ].filter(({ link, fixed, pattern }) => !fixed && pattern && document.querySelector(`[data-link="${link}"]`));
+  const repositoryPath = repository.match(/github\.com\/([^/]+\/[^/]+)/)?.[1];
+  if (editions.length && repositoryPath && 'fetch' in window) {
+    fetch(`https://api.github.com/repos/${repositoryPath}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((release) => {
+        const assets = release?.assets || [];
+        editions.forEach(({ link, pattern }) => {
+          const matcher = new RegExp(pattern);
+          const asset = assets.find(({ name }) => matcher.test(name));
+          if (!asset) return;
+          document.querySelectorAll(`[data-link="${link}"]`).forEach((button) => {
+            button.href = asset.browser_download_url;
+            button.title = asset.name;
+          });
+        });
+      })
+      .catch(() => {});
+  }
 } else {
   document.querySelectorAll('[data-requires-repository]').forEach((element) => element.remove());
 }
