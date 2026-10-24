@@ -1,14 +1,8 @@
 name: Publish Candy Sync image
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - "v[0-9]*"
-    paths:
-      - .github/workflows/publish-candy-sync-image.yml
-      - sync/server/**
+  # Manual only: Lince does not publish a Sync server image and Docker Hub is not configured.
+  # Restore the push trigger (main, "v[0-9]*" tags, sync/server/**) once it is.
   workflow_dispatch:
 
 permissions:

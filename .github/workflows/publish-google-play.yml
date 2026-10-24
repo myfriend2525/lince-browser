@@ -1,9 +1,8 @@
 name: Publish Google Play release
 
 on:
-  release:
-    types:
-      - published
+  # No automatic run on published releases: Lince is not on Google Play yet and the Play
+  # credentials are not configured. Restore the release trigger once they are.
   workflow_call:
     inputs:
       version:
