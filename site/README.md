@@ -8,7 +8,7 @@ notice in Spanish (root) and English (`en/`).
 | `index.html`, `en/index.html` | Landing page (hero, features, editions, downloads, install steps) |
 | `privacy/`, `en/privacy/` | Privacy policy |
 | `legal/`, `en/legal/` | Legal notice, licenses and credits |
-| `config.js` | Download and GitHub links — the only file to edit once the repository exists |
+| `config.js` | Download, GitHub and Telegram community links — the only file to edit for links |
 | `main.js` | Shared behavior: links, floating nav, hero entrance, rotating word, letter-by-letter titles, count-up figures, install steps |
 | `styles.css` | All styles; the hero is a 1440×1280 frame scaled with `--u = 100vw / 1440` |
 | `assets/fonts/` | Self-hosted Grandstander and Inter (SIL OFL 1.1) |
@@ -24,6 +24,13 @@ button straight at the APK whose name matches `apkPattern` (GeckoView, also used
 `webviewApkPattern` (System WebView), so tapping the button downloads the file. Without a release or
 a matching asset, the buttons fall back to the Releases page. `geckoApk` and `webviewApk` override
 the lookup with fixed links. The patterns must match the APK names the release workflow publishes.
+
+## Community invite
+
+When `telegram` in `config.js` is set, the landing page shows a dismissible card inviting visitors to
+the Telegram group (bug reports, feature requests, chat) about 3.5 s after load, plus a footer link.
+Closing the card or tapping its button hides it for that browser (`localStorage`). An empty `telegram`
+removes both.
 
 ## Local preview
 

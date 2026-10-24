@@ -65,6 +65,39 @@ if (repository) {
   document.querySelectorAll('[data-requires-repository]').forEach((element) => element.remove());
 }
 
+// Community invite: a dismissible card once the hero has settled, remembered per browser.
+const telegram = linceLinks.telegram || '';
+const community = document.querySelector('[data-community]');
+document.querySelectorAll('[data-link="telegram"]').forEach((link) => {
+  if (telegram) link.href = telegram;
+  else link.remove();
+});
+if (community && telegram) {
+  const dismissedKey = 'lince-community-dismissed';
+  const isDismissed = () => {
+    try { return localStorage.getItem(dismissedKey) === '1'; } catch { return false; }
+  };
+  const dismiss = () => {
+    try { localStorage.setItem(dismissedKey, '1'); } catch {}
+    community.classList.remove('is-open');
+    setTimeout(() => { community.hidden = true; }, reduceMotion ? 0 : 300);
+  };
+  community.querySelector('[data-community-close]').addEventListener('click', dismiss);
+  community.querySelector('[data-community-join]').addEventListener('click', dismiss);
+  addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && community.classList.contains('is-open')) dismiss();
+  });
+  if (!isDismissed()) {
+    setTimeout(() => {
+      community.hidden = false;
+      void community.offsetWidth;
+      community.classList.add('is-open');
+    }, 3500);
+  }
+} else if (community) {
+  community.remove();
+}
+
 // Scene video: only with motion allowed; it fades in over the identical still.
 const video = document.querySelector('.scene video');
 if (!video) {
