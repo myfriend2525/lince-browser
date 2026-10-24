@@ -362,9 +362,8 @@ For local development, [build and load the extension](docs/sync/extension.md).
 
 ### Nightly builds
 
-Nightly builds publish to [GitHub Releases](https://github.com/sk2andy/candy-browser/releases) at
-**00:00 UTC daily (02:00 CEST; 01:00 CET in winter)** when `main` has new commits since the last
-successfully published Nightly. GitHub may start scheduled jobs later than the requested time.
+Nightly builds are not scheduled for Lince yet. The Nightly workflow only runs when started
+manually from GitHub Actions, and it needs the release signing secrets configured on GitHub.
 Each build is a signed, optimized prerelease with an immutable
 `v<base-version>-nightly.<UTC YYYYMMDDHHmm>` tag. Nightlies do not publish to Google Play.
 

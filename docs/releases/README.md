@@ -10,7 +10,7 @@ GitHub Release body. This keeps the product presentation and the public release 
 | Source | `release-notes/<candy.versionName>.md` |
 | Language | English |
 | GitHub Actions | The `changelog` workflow input is required and must match the versioned path |
-| Nightly notes | Scheduled Nightly builds generate version-matched English notes and bundle the same Markdown published in their GitHub prerelease |
+| Nightly notes | Manually started Nightly builds generate version-matched English notes and bundle the same Markdown published in their GitHub prerelease |
 | Android package | Markdown and referenced screenshots are bundled as offline assets |
 | Presentation | Shown once on the first regular launcher start after an app update |
 | Fresh install | Uses only the normal onboarding; bundled notes are not queued afterward |

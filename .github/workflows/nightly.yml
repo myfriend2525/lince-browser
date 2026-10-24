@@ -1,9 +1,8 @@
 name: Nightly Android APK
 
 on:
-  schedule:
-    # Fixed 02:00 CEST throughout the year, including winter: 00:00 UTC.
-    - cron: "0 0 * * *"
+  # Manual only: Lince does not publish Nightly builds yet, and the release signing secrets are not
+  # configured on GitHub. Restore a schedule (for example cron "0 0 * * *") once they are.
   workflow_dispatch:
 
 permissions:
