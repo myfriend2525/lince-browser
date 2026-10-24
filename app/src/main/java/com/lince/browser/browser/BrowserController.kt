@@ -1567,6 +1567,13 @@ class BrowserController(
         private set
     private var lastWindowInsets: WindowInsetsCompat? = null
     private var browserChromeOwnsIme = false
+    private var browserChromeImeClosing = false
+    private val browserChromeImeCloseTimeout = Runnable { finishBrowserChromeImeClose() }
+    private val browserChromeImeMasksPage: Boolean
+        get() = BrowserChromeImeRules.masksPageIme(
+            browserChromeOwnsIme = browserChromeOwnsIme,
+            isClosing = browserChromeImeClosing,
+        )
     private var previewEpoch = 0
     var restorationPreview: TabPreview? by mutableStateOf(null)
         private set
@@ -3161,13 +3168,22 @@ class BrowserController(
     fun onWindowInsetsChanged(insets: WindowInsetsCompat) {
         val previousInsets = lastWindowInsets
         lastWindowInsets = insets
+        val previousImeMaskedPage = browserChromeImeMasksPage
+        val chromeImeClosed = BrowserChromeImeRules.finishesClosing(
+            isClosing = browserChromeImeClosing,
+            isImeVisible = insets.isVisible(WindowInsetsCompat.Type.ime()),
+        )
+        if (chromeImeClosed) {
+            browserChromeImeClosing = false
+            mainHandler.removeCallbacks(browserChromeImeCloseTimeout)
+        }
         val isPageImeVisible = AddressBarAutoDockRules.shouldProbeForImeState(
             isImeVisible = insets.isVisible(WindowInsetsCompat.Type.ime()),
-            browserChromeOwnsIme = browserChromeOwnsIme,
+            browserChromeOwnsIme = browserChromeImeMasksPage,
         )
         val wasPageImeVisible = AddressBarAutoDockRules.shouldProbeForImeState(
             isImeVisible = previousInsets?.isVisible(WindowInsetsCompat.Type.ime()) == true,
-            browserChromeOwnsIme = browserChromeOwnsIme,
+            browserChromeOwnsIme = previousImeMaskedPage,
         )
         if (isPageImeVisible) {
             scheduleAddressBarAutoDockProbe(
@@ -3175,11 +3191,11 @@ class BrowserController(
                 url = selectedTab.url,
                 requiresPageIme = true,
             )
-        } else if (wasPageImeVisible) {
+        } else if (wasPageImeVisible || chromeImeClosed) {
             scheduleSelectedAddressBarAutoDockProbe()
         }
         if (
-            browserChromeOwnsIme &&
+            browserChromeImeMasksPage &&
             previousInsets != null &&
             hasSameNonImeInsets(previousInsets, insets)
         ) {
@@ -3324,11 +3340,33 @@ class BrowserController(
     fun setBrowserChromeOwnsIme(ownsIme: Boolean) {
         if (browserChromeOwnsIme == ownsIme) return
         browserChromeOwnsIme = ownsIme
+        mainHandler.removeCallbacks(browserChromeImeCloseTimeout)
+        // Submitting the address editor releases ownership before Android hides the keyboard.
+        // Handing that keyboard to Gecko shrinks its surface for a frame and can leave the
+        // bottom of the next page unpainted once the keyboard is gone.
+        browserChromeImeClosing = BrowserChromeImeRules.startsClosingAfterRelease(
+            browserChromeOwnsIme = ownsIme,
+            isImeVisible = lastWindowInsets?.isVisible(WindowInsetsCompat.Type.ime()) == true,
+        )
         if (ownsIme) {
             cancelAddressBarAutoDockProbe()
+        } else if (browserChromeImeClosing) {
+            mainHandler.postDelayed(
+                browserChromeImeCloseTimeout,
+                BrowserChromeImeRules.CLOSE_TIMEOUT_MILLIS,
+            )
         } else {
             scheduleSelectedAddressBarAutoDockProbe()
         }
+        val insets = lastWindowInsets ?: return
+        dispatchWindowInsetsToAttachedEngineViews(insets)
+    }
+
+    private fun finishBrowserChromeImeClose() {
+        if (!browserChromeImeClosing) return
+        // A page that focuses its own input keeps the keyboard open; hand it over after all.
+        browserChromeImeClosing = false
+        scheduleSelectedAddressBarAutoDockProbe()
         val insets = lastWindowInsets ?: return
         dispatchWindowInsetsToAttachedEngineViews(insets)
     }
@@ -4971,7 +5009,7 @@ class BrowserController(
         insets: WindowInsetsCompat,
         isInsideSafeDrawingHost: Boolean = false,
     ) {
-        val effectiveInsets = if (browserChromeOwnsIme) {
+        val effectiveInsets = if (browserChromeImeMasksPage) {
             WindowInsetsCompat.Builder(insets)
                 .setInsets(WindowInsetsCompat.Type.ime(), Insets.NONE)
                 .setVisible(WindowInsetsCompat.Type.ime(), false)
@@ -13709,7 +13747,7 @@ class BrowserController(
             selectedTabId != tabId ||
             tabId in manuallyUnparkedAddressBarTabIds ||
             !isAddressBarAutoDockBrowserVisible() ||
-            browserChromeOwnsIme ||
+            browserChromeImeMasksPage ||
             (!requiresPageIme && selectedTab.isLoading)
         ) return
         val expectedUrl = BrowserUriPolicy.normalizeHttpUrl(url) ?: return
@@ -13760,7 +13798,7 @@ class BrowserController(
                         false,
                     hasViewportRect = viewportRect != null,
                     isBrowserVisible = isAddressBarAutoDockBrowserVisible(),
-                    browserChromeOwnsIme = browserChromeOwnsIme,
+                    browserChromeOwnsIme = browserChromeImeMasksPage,
                     manuallyUnparked = tabId in manuallyUnparkedAddressBarTabIds,
                 )
             ) {
@@ -13781,7 +13819,7 @@ class BrowserController(
                 viewportRectMatches = addressBarViewportRect == viewportRect,
                 isPrivatePage = tabs.firstOrNull { tab -> tab.id == tabId }?.isIncognito != false,
                 isBrowserVisible = isAddressBarAutoDockBrowserVisible(),
-                browserChromeOwnsIme = browserChromeOwnsIme,
+                browserChromeOwnsIme = browserChromeImeMasksPage,
                 manuallyUnparked = tabId in manuallyUnparkedAddressBarTabIds,
             )
             if (!probeIsCurrent) {
@@ -13814,7 +13852,7 @@ class BrowserController(
                     isPrivatePage = tabs.firstOrNull { tab -> tab.id == tabId }?.isIncognito !=
                         false,
                     isBrowserVisible = isAddressBarAutoDockBrowserVisible(),
-                    browserChromeOwnsIme = browserChromeOwnsIme,
+                    browserChromeOwnsIme = browserChromeImeMasksPage,
                     manuallyUnparked = tabId in manuallyUnparkedAddressBarTabIds,
                 )
                 if (!resultIsCurrent) {
@@ -13868,7 +13906,7 @@ class BrowserController(
 
     private fun isPageImeVisible(): Boolean = AddressBarAutoDockRules.shouldProbeForImeState(
         isImeVisible = lastWindowInsets?.isVisible(WindowInsetsCompat.Type.ime()) == true,
-        browserChromeOwnsIme = browserChromeOwnsIme,
+        browserChromeOwnsIme = browserChromeImeMasksPage,
     )
 
     private fun handlePageTranslationEngineEvent(event: BrowserEngineEvent) {

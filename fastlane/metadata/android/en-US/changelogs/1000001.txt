@@ -1,0 +1,1 @@
+Lince Browser 1.0.1: searching from the address bar no longer leaves a black keyboard-sized area at the bottom of the next page. Join the community on Telegram: t.me/lincebrowser

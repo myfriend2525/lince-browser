@@ -79,6 +79,34 @@ class GeckoKeyboardInsetsInstrumentedTest {
     }
 
     @Test
+    fun closingChromeEditorKeepsItsClosingKeyboardOutOfThePage() {
+        withFixture { scenario ->
+            val initial = awaitReport(scenario) { true }
+            scenario.onActivity { assertTrue(it.browserControllerForTesting().openFindInPage()) }
+            awaitImeVisibility(scenario, true)
+
+            // Releasing chrome ownership lands before Android reports the keyboard hidden.
+            scenario.onActivity { it.browserControllerForTesting().closeFindInPage() }
+            instrumentation.waitForIdleSync()
+            scenario.onActivity { activity ->
+                val host = requireNotNull(
+                    activity.browserControllerForTesting().selectedGeckoViewForTesting(),
+                ) as ViewGroup
+                assertEquals(
+                    0,
+                    (host.getChildAt(0).layoutParams as ViewGroup.MarginLayoutParams).bottomMargin,
+                )
+                WindowCompat.getInsetsController(activity.window, activity.window.decorView)
+                    .hide(WindowInsetsCompat.Type.ime())
+            }
+            awaitImeVisibility(scenario, false)
+            awaitReport(scenario) {
+                kotlin.math.abs(it.getDouble("visualHeight") - initial.getDouble("visualHeight")) < 1
+            }
+        }
+    }
+
+    @Test
     fun resumeReconcilesKeyboardMarginsWhenHiddenInsetsWereMissed() {
         assertStaleKeyboardInsetsReconciled { scenario ->
             scenario.moveToState(Lifecycle.State.CREATED)

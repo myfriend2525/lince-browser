@@ -104,6 +104,10 @@
   margins so its rendering surface and visual viewport shrink, including in full immersive mode
   while Candy's outer host remains full height. Combine keyboard and native safe-area bottom
   margins with their maximum; a Compose safe-drawing host already owns keyboard space.
+  A keyboard opened by the address editor or find bar stays chrome-owned after the editor closes
+  until Android reports it hidden (`BrowserChromeImeRules`, 1 s fallback for pages that keep it
+  open); otherwise submitting a search shrinks the Gecko surface for a frame and can leave a
+  black keyboard-sized area on the next page.
   On Activity resume and window-focus restoration, reconcile the current root insets and request
   a fresh content traversal. A hidden-IME callback missed while stopped or behind another window
   must not leave the inner renderer cropped by the previous keyboard height.
